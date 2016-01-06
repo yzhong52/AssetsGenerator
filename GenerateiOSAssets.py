@@ -27,7 +27,7 @@ for file in allfiles:
 	for i in range(1,4):
 		# Get new size for the image
 		newWidth  = width * i
-		bewHeight = height * i
+		newHeight = height * i
 
 		# construct new image file name
 		newImageName = file[:p1];
@@ -37,7 +37,7 @@ for file in allfiles:
 			newImageName = newImageName + "@"+str(i)+"x.png"
 
 		# Options are ANTIALIAS, BICUBIC, NEAREST, ANTIALIAS
-		newImage = originalImage.resize((newWidth, newWidth), Image.ANTIALIAS)     # linear interpolation in a 2x2 environment
+		newImage = originalImage.resize((newWidth, newHeight), Image.ANTIALIAS)     # linear interpolation in a 2x2 environment
 		newImage.save( newImageName )
 
 		print( " - Image '" + newImageName + "' is saved" )
