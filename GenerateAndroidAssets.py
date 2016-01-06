@@ -4,15 +4,15 @@ import glob
 import os
 
 os.chdir("./")
-allfiles = glob.glob("*.png")
 
-directories = ["ldpi", "mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"]
+directories = ["drawable-ldpi", "drawable-mdpi", "drawable-hdpi", "drawable-xhdpi", "drawable-xxhdpi", "drawable-xxxhdpi"]
 resizes = [0.75, 1, 1.5, 2, 3, 4]
 
 for directory in directories:
     if not os.path.exists(directory):
         os.makedirs(directory)
 
+allfiles = glob.glob("*.png")
 for file in allfiles:
 
 	p1 = file.rfind(' ')
@@ -34,13 +34,13 @@ for file in allfiles:
 	for i in range(0, 6):
 		# Get new size for the image
 		newWidth  = int(width * resizes[i])
-		bewHeight = int(height * resizes[i])
+		newHeight = int(height * resizes[i])
 
 		# construct new image file name
 		newImageName = directories[i] + "/" + file[:p1] + ".png"
 		
 		# Options are ANTIALIAS, BICUBIC, NEAREST, ANTIALIAS
-		newImage = originalImage.resize((newWidth, newWidth), Image.ANTIALIAS)
+		newImage = originalImage.resize((newWidth, newHeight), Image.ANTIALIAS)
 		newImage.save( newImageName )
 
 		print( " - Image '" + newImageName + "' is saved" )
